@@ -7,6 +7,7 @@ import {
   Text,
   TextInput,
   View,
+  StyleSheet,
 } from 'react-native';
 import Animated, {
   useSharedValue,
@@ -15,6 +16,7 @@ import Animated, {
   FadeInDown,
   FadeInUp,
   FadeInRight,
+  FadeInLeft,
 } from 'react-native-reanimated';
 export default function login() {
   const width = useSharedValue(100);
@@ -31,13 +33,7 @@ export default function login() {
         />
       </View>
       <View style={{position: 'absolute'}}>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-around',
-            width: '100%',
-          }}
-        >
+        <View style={styles.lightContainer}>
           <Animated.Image
             entering={FadeInUp.delay(400).duration(1000).springify()}
             source={require('../../assets/images/light.png')}
@@ -68,53 +64,33 @@ export default function login() {
 
         <View
           style={{
-            marginTop: '50%',
+            marginTop: '40%',
             width: '80%',
             marginStart: 20,
           }}
         >
           <Animated.View
-            entering={FadeInDown.delay(600).duration(1000).springify()}
+            entering={FadeInLeft.delay(600).duration(5000).springify()}
           >
             <TextInput
               placeholder="Enter a name"
-              style={{
-                backgroundColor: 'grey',
-                width: '100%',
-                borderRadius: 20,
-                padding: 20,
-                justifyContent: 'center',
-              }}
+              style={styles.textInput}
+              placeholderTextColor={'black'}
             />
           </Animated.View>
           <Animated.View
-            entering={FadeInDown.delay(600).duration(1000).springify()}
+            entering={FadeInLeft.delay(600).duration(5000).springify()}
           >
             <TextInput
               placeholder="Enter a password"
-              style={{
-                backgroundColor: 'grey',
-                width: '100%',
-                borderRadius: 20,
-                justifyContent: 'center',
-                marginTop: 20,
-                padding: 20,
-              }}
+              style={styles.textInput}
+              placeholderTextColor={'black'}
             />
           </Animated.View>
           <Animated.View
             entering={FadeInRight.delay(600).duration(1000).springify()}
           >
-            <Pressable
-              style={{
-                height: 50,
-                backgroundColor: 'lightblue',
-                borderRadius: 20,
-                justifyContent: 'center',
-                alignItems: 'center',
-                marginTop: 20,
-              }}
-            >
+            <Pressable style={styles.buttonContainer}>
               <Text style={{fontSize: 20, fontWeight: '800', color: 'white'}}>
                 Login
               </Text>
@@ -125,3 +101,26 @@ export default function login() {
     </View>
   );
 }
+const styles = StyleSheet.create({
+  textInput: {
+    backgroundColor: '#B2BEB5',
+    width: '100%',
+    borderRadius: 20,
+    justifyContent: 'center',
+    marginTop: 20,
+    padding: 20,
+  },
+  buttonContainer: {
+    height: 50,
+    backgroundColor: '#088F8F',
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 40,
+  },
+  lightContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    width: '100%',
+  },
+});
